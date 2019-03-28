@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ blog.title }}{% endblock %}
+{% block nav_blog_active %}active{% endblock %}
+
+{% load staticfiles %}
+{% block header_extends %}
+<link rel="stylesheet" href="{% static 'css/blog-list.css' %}">
+{% endblock %}
+
+{# 页面内容 #}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-10">
+                <h3>{{ blog.title }}</h3>
+                <ul class="content-description">
+                    <li>作者：{{ blog.author }}</li>
+                    <li>博客分类：{{ blog.blog_type }}</li>
+                    <li>发表日期：{{ blog.create_time|date:"Y-m-d G:m:s" }}</li>
+                    <li>阅读({{ blog.get_read_num }})</li>
+                </ul>
+                <div class="content">{{ blog.content|safe }}</div>
+                <div class="more-blog">
+                    {% if previous_blog %}
+                        <p class="pre-blog">上一篇：<a href="{% url 'blog_detail' previous_blog.pk %}">{{ previous_blog.title }}</a></p>
+                    {% else %}
+                        <p class="pre-blog">上一篇：没有了</p>
+                    {% endif %}
+
+                    {% if next_blog %}
+                        <p class="next-blog">下一篇：<a href="{% url 'blog_detail' next_blog.pk %}">{{ next_blog.title }}</a></p>
+                    {% else %}
+                        <p class="next-blog">下一篇：没有了</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10">
+                <div>提交评论区域
+                    {% if user.is_authenticated %}
+                        已登录
+                    {% else %}
+                        未登录
+                        <form action="{% url 'login' %}" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="username">
+                            <input type="password" name="password">
+                            <input type="submit" value="登录">
+                        </form>
+                    {% endif %}
+                </div>
+                <div>评论列表</div>
+            </div>
+        </div>
+    </div>
+{% endblock%}

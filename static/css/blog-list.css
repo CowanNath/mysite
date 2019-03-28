@@ -1,0 +1,38 @@
+.blog-types {
+    list-style-type: none;
+}
+div.blog-list:not(:last-child) {
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #ccc;
+}
+div.blog-list p.content-info {
+    font-size: 12px;
+}
+div.paginator{
+    text-align: center;
+}
+
+ul.content-description {
+    list-style-type:none;
+    margin-bottom: 1em;
+}
+
+ul.content-description li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+div.content {
+    text-indent:2em;
+}
+
+div.more-blog{
+    margin-top: 2em;
+    display: inline;
+/*    float: right;*/
+}
+
+ul.date-filter{
+    list-style-type: none;
+}
