@@ -29,7 +29,7 @@ Scrapy==1.5.1
 service-identity==18.1.0
 six==1.12.0
 Twisted==18.9.0
-urllib3==1.24.1
+urllib3==1.26.5
 virtualenv==16.2.0
 virtualenv-clone==0.5.0
 w3lib==1.20.0
